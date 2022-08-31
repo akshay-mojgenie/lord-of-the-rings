@@ -6,9 +6,10 @@ import "./tableBody.scss";
 function TableBody() {
   const [data, setData] = useState([]);
   const [limit, setLimit] = useState("10");
+  const [sort, setSort] = useState("asc");
 
   function fetchData() {
-    api.get(`/character?limit=${limit}`).then((response) => {
+    api.get(`/character?limit=${limit}&sort=name:${sort}`).then((response) => {
       setData(response.data.docs);
     });
   }
@@ -17,8 +18,11 @@ function TableBody() {
     document.getElementById("limit").onchange = () => {
       setLimit(document.getElementById("limit").value);
     };
-  }, [limit]);
-
+    document.getElementById("sort").onchange = () => {
+      setSort(document.getElementById("sort").value);
+    };
+  }, [limit, sort]);
+  console.log(data)
   return (
     <table className="table">
       <tbody>

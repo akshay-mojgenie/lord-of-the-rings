@@ -14,7 +14,15 @@ function Tableheader() {
             </div>
             <div className="table-input-wrapper">
               <label>Sort by</label>
-              <select className="table-input" name="" id=""></select>
+              <select
+                className="table-input"
+                name=""
+                id="sort"
+                placeholder="by name(asc/desc)"
+              >
+                <option value="asc" defaultValue="asc">Ascending</option>
+                <option value="desc">Descending</option>
+              </select>
             </div>
           </div>
           <div className="table-header-item">
