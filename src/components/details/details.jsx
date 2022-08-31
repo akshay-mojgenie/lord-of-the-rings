@@ -1,51 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./details.scss";
+import { useParams } from "react-router-dom";
+import api from "../../utils/api";
 
 export default function Details() {
+  const [data, setData] = useState([]);
+  let params = useParams();
+  useEffect(() => {
+    api.get(`/character/${params.id}`).then((response) => {
+      setData(response.data.docs[0]);
+    });
+  }, []);
   return (
     <>
-      <p className="table-header">Characters &gt; Amandil</p>
+      <p className="table-header">Characters &gt; {data.name}</p>
       <div className="table-details">
         <table>
           <tr>
             <th>Name</th>
-            <td>Amandil</td>
+            <td>{data.name}</td>
           </tr>
           <tr>
             <th>WikiURL</th>
-            <td>http://abc.com</td>
+            <td>{data.wikiUrl}</td>
           </tr>
           <tr>
             <th>Race</th>
-            <td>Human</td>
+            <td>{data.race}</td>
           </tr>
           <tr>
             <th>Gender</th>
-            <td>Male</td>
+            <td>{data.gender}</td>
           </tr>
           <tr>
             <th>Height</th>
-            <td>...</td>
+            <td>{data.height}</td>
           </tr>
           <tr>
             <th>Hair</th>
-            <td>...</td>
+            <td>{data.hair}</td>
           </tr>
           <tr>
             <th>Realm</th>
-            <td>...</td>
+            <td>{data.realm}</td>
           </tr>
           <tr>
             <th>Birth</th>
-            <td>Late,Second Age</td>
+            <td>{data.birth}</td>
           </tr>
           <tr>
             <th>Spouse</th>
-            <td>Unnamed wife</td>
+            <td>{data.spouse}</td>
           </tr>
           <tr>
             <th>Death</th>
-            <td>Sailed West either SA 3310 fate unknown</td>
+            <td>{data.death}</td>
           </tr>
         </table>
         <div className="table-details-close">

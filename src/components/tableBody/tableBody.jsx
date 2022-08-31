@@ -11,7 +11,6 @@ function TableBody() {
     });
   }, []);
 
-  console.log(data);
   return (
     <table className="table">
       <tbody>
@@ -23,13 +22,13 @@ function TableBody() {
           <th>Actions</th>
         </tr>
         {data.map((d, index) => (
-          <tr>
+          <tr key={index}>
             <td>{index + 1}</td>
             <td>{d.name}</td>
             <td>{d.race}</td>
             <td>{d.gender}</td>
             <td>
-              <a href="/details">Details &gt;&gt;</a>
+              <a href={`/${d._id}`}>Details &gt;&gt;</a>
             </td>
           </tr>
         ))}

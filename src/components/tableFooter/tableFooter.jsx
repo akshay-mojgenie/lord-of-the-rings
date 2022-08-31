@@ -14,9 +14,11 @@ function TableFooter() {
         <div className="table-input-wrapper">
           <label htmlFor="">Limit</label>
           <select className="table-footer-select" name="" id="">
-            <option value="9" defaultValue={9}>
-              9
+            <option value="10" defaultValue={10}>
+              10
             </option>
+            <option value="20">20</option>
+            <option value="50">50</option>
           </select>
         </div>
       </div>

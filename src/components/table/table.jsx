@@ -1,21 +1,36 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Tableheader from "../tableHeader/tableheader";
 import TableBody from "../tableBody/tableBody";
 import TableFooter from "../tableFooter/tableFooter";
 import Details from "../details/details";
 import "./table.scss";
-import { useState } from "react";
 
 //45AP-zHxx92Xt7SwS7Dy
 function Table() {
-  const [detailsVisible, setDetailsVisible] = useState(false);
   return (
-    <div className="table-wrapper">
-      <Tableheader />
-      <TableBody />
-      <TableFooter />
-      {/* <Details /> */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="table-wrapper">
+              <Tableheader />
+              <TableBody />
+              <TableFooter />
+            </div>
+          }
+        />
+        <Route
+          path="/:id"
+          element={
+            <div className="table-wrapper">
+              <Details />
+            </div>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
