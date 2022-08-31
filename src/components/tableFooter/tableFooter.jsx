@@ -13,7 +13,7 @@ function TableFooter() {
         </div>
         <div className="table-input-wrapper">
           <label htmlFor="">Limit</label>
-          <select className="table-footer-select" name="" id="">
+          <select className="table-footer-select" name="" id="limit">
             <option value="10" defaultValue={10}>
               10
             </option>

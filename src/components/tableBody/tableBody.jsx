@@ -5,11 +5,19 @@ import "./tableBody.scss";
 
 function TableBody() {
   const [data, setData] = useState([]);
-  useEffect(() => {
-    api.get("/character?limit=10").then((response) => {
+  const [limit, setLimit] = useState("10");
+
+  function fetchData() {
+    api.get(`/character?limit=${limit}`).then((response) => {
       setData(response.data.docs);
     });
-  }, []);
+  }
+  useEffect(() => {
+    fetchData();
+    document.getElementById("limit").onchange = () => {
+      setLimit(document.getElementById("limit").value);
+    };
+  }, [limit]);
 
   return (
     <table className="table">
