@@ -1,0 +1,19 @@
+.table {
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  th,
+  td {
+    text-align: left;
+    &:last-child {
+      text-align: right;
+    }
+  }
+  a{
+    text-decoration: none;
+    color: rgb(24, 114, 114);
+    &:hover{
+        color: rgb(60, 156, 124);
+    }
+  }
+}

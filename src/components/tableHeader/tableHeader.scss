@@ -1,0 +1,43 @@
+.table {
+  &-header {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid black;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    &-item {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+  }
+  &-input {
+    min-width: 200px;
+    border: 1px solid black;
+    padding: 2px;
+    background-color: white;
+    &-wrapper {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+  &-actions {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid black;
+  }
+}
+
+.submit {
+  width: max-content;
+  border-radius: 0;
+  border: none;
+  background-color: rgb(83, 83, 129);
+  color: white;
+  cursor: pointer;
+  padding: 4px 8px;
+}

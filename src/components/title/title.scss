@@ -1,0 +1,9 @@
+.title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 500;
+  &-sub {
+    @extend .title;
+    font-size: 18px;
+  }
+}
