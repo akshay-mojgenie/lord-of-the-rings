@@ -1,0 +1,16 @@
+.table {
+  &-details {
+    padding: 10px;
+    table {
+      width: 100%;
+    }
+    th {
+      text-align: left;
+    }
+    &-close {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
