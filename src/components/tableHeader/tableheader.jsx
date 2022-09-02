@@ -2,10 +2,13 @@ import React from "react";
 import "./tableHeader.scss";
 
 function Tableheader() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
     <>
       <p className="table-header">Characters</p>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className="table-actions">
           <div className="table-header-item">
             <div className="table-input-wrapper">
@@ -51,7 +54,9 @@ function Tableheader() {
                 <option value="Female">Female</option>
               </select>
             </div>
-            <button className="submit">SUBMIT</button>
+            <button id="submit" className="submit">
+              SUBMIT
+            </button>
           </div>
         </div>
       </form>

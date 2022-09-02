@@ -61,7 +61,7 @@ export default function Details() {
           </tbody>
         </table>
         <div className="table-details-close">
-          <Link to="/" className="submit">
+          <Link to={-1} className="submit">
             CLOSE
           </Link>
         </div>

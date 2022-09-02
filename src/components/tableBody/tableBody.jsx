@@ -31,6 +31,7 @@ function TableBody() {
         console.log(response.data.page);
       });
   }
+
   useEffect(() => {
     const limit = document.getElementById("limit");
     const sort = document.getElementById("sort");
@@ -45,26 +46,21 @@ function TableBody() {
     const pageNext = document.getElementById("page-next");
     const pageManyLeft = document.getElementById("page-many-left");
     const pageManyRight = document.getElementById("page-many-right");
+    const submit = document.getElementById("submit");
 
-    limit.onchange = () => {
+    submit.onclick = () => {
       setLimit(limit.value);
-    };
-
-    sort.onchange = () => {
       setSort(sort.value);
-    };
-
-    gender.onchange = () => {
       setGender(gender.value);
-    };
-
-    search.onchange = () => {
       setSearch(search.value);
+      setRace(race.value);
+      fetchData();
     };
 
-    race.onchange = () => {
-      setRace(race.value);
-    };
+    if (dataFirstLoad === true) {
+      fetchData();
+      setDataFirstLoad(false);
+    }
 
     pageLast.innerHTML = pages;
     pageLast.onclick = () => {
@@ -83,11 +79,6 @@ function TableBody() {
     pageNear.onclick = () => {
       fetchData(2);
     };
-
-    if (dataFirstLoad === true) {
-      fetchData();
-      setDataFirstLoad(false);
-    }
 
     pagePrevious.onclick = () => {
       if (pageCurrent > 1) {
