@@ -32,7 +32,8 @@ function Tableheader() {
               <label>Race</label>
               <select name="" id="race" className="table-input">
                 <option value="Any">Any</option>
-                <option value="Human,Men">Human</option>
+                <option value="Human">Human</option>
+                <option value="Men">Men</option>
                 <option value="Dwarf,Dwarves">Dwarves</option>
                 <option value="Elves">Elves</option>
                 <option value="Hobbit,Hobbits">Hobbits</option>

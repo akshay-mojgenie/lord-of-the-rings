@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./details.scss";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../../utils/api";
 
 export default function Details() {
@@ -10,7 +11,7 @@ export default function Details() {
     api.get(`/character/${params.id}`).then((response) => {
       setData(response.data.docs[0]);
     });
-  }, []);
+  }, [params.id]);
   return (
     <>
       <p className="table-header">Characters &gt; {data.name}</p>
@@ -60,7 +61,9 @@ export default function Details() {
           </tbody>
         </table>
         <div className="table-details-close">
-          <a href="/" className="submit">CLOSE</a>
+          <Link to="/" className="submit">
+            CLOSE
+          </Link>
         </div>
       </div>
     </>

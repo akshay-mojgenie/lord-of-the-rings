@@ -6,10 +6,22 @@ function TableFooter() {
     <>
       <div className="table-footer">
         <div className="table-footer-pages">
-          <button className="page-number">1</button>
-          <button className="page-number">2</button>
-          <button className="page-many">...</button>
-          <button className="page-number">9</button>
+          <button id="page-previous" className="page-number">
+            {`<`}
+          </button>
+          <button id="page-first" className="page-number">
+            1
+          </button>
+          <button id="page-near" className="page-number">
+            2
+          </button>
+          <button id="page-many-left" className="page-many">...</button>
+          <button id="page-mid" className="page-number"></button>
+          <button id="page-many-right" className="page-many">...</button>
+          <button id="page-last" className="page-number"></button>
+          <button id="page-next" className="page-number">
+            {`>`}
+          </button>
         </div>
         <div className="table-input-wrapper">
           <label htmlFor="">Limit</label>
