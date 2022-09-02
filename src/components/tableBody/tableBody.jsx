@@ -21,14 +21,14 @@ function TableBody() {
         `/character?limit=${limit}&sort=name:${sort}${
           gender === "Any" ? "" : "&gender=" + gender
         }${search === "" ? "" : "&name=/" + search + "/i"}${
-          race === "Any" ? "" : "&race=" + race
+          race == "Any" ? "" : "&race=" + race
         }${page ? "&page=" + page : ""}`
       )
       .then((response) => {
         setData(response.data.docs);
         setPages(response.data.pages);
         setPageCurrent(response.data.page);
-        console.log(response.data.page);
+        console.log(response.data.docs);
       });
   }
 
@@ -37,7 +37,39 @@ function TableBody() {
     const sort = document.getElementById("sort");
     const gender = document.getElementById("gender");
     const search = document.getElementById("search");
+
+    limit.onchange = () => {
+      setLimit(limit.value);
+    };
+
+    sort.onchange = () => {
+      setSort(sort.value);
+    };
+
+    gender.onchange = () => {
+      setGender(gender.value);
+    };
+
+    search.onchange = () => {
+      setSearch(search.value);
+    };
+  }, []);
+
+  useEffect(() => {
+    const submit = document.getElementById("submit");
+    submit.onclick = () => {
+      fetchData();
+    };
+  }, []);
+
+  useEffect(() => {
     const race = document.getElementById("race");
+    race.onchange = () => {
+      setRace(race.attributes.data.value);
+    };
+  }, []);
+  
+  useEffect(() => {
     const pageFirst = document.getElementById("page-first");
     const pageNear = document.getElementById("page-near");
     const pageMid = document.getElementById("page-mid");
@@ -46,21 +78,6 @@ function TableBody() {
     const pageNext = document.getElementById("page-next");
     const pageManyLeft = document.getElementById("page-many-left");
     const pageManyRight = document.getElementById("page-many-right");
-    const submit = document.getElementById("submit");
-
-    submit.onclick = () => {
-      setLimit(limit.value);
-      setSort(sort.value);
-      setGender(gender.value);
-      setSearch(search.value);
-      setRace(race.value);
-      fetchData();
-    };
-
-    if (dataFirstLoad === true) {
-      fetchData();
-      setDataFirstLoad(false);
-    }
 
     pageLast.innerHTML = pages;
     pageLast.onclick = () => {
@@ -79,6 +96,11 @@ function TableBody() {
     pageNear.onclick = () => {
       fetchData(2);
     };
+
+    if (dataFirstLoad === true) {
+      fetchData();
+      setDataFirstLoad(false);
+    }
 
     pagePrevious.onclick = () => {
       if (pageCurrent > 1) {
@@ -147,7 +169,9 @@ function TableBody() {
         fetchData(pageCurrent + 1);
       }
     };
-  }, [limit, sort, gender, search, race, pages, pageCurrent, dataFirstLoad]);
+  }, [pages, pageCurrent, dataFirstLoad]);
+
+
   return (
     <table className="table">
       <tbody>

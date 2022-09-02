@@ -5,6 +5,30 @@ function Tableheader() {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+
+  let raceItems = [];
+
+  function toggleItem(e) {
+    const race = document.getElementById("race");
+    const raceSelected = document.getElementById("race-selected");
+    let index = raceItems.indexOf(e.target.value);
+    let anyIndex = raceItems.indexOf("Any");
+    if (e.target.value == "Any") {
+      raceItems = ["Any"];
+      raceSelected.innerHTML = "Any";
+      race.attributes.data.value = "Any";
+    } else if (index > -1) {
+      raceItems.splice(index, 1);
+    } else {
+      if (anyIndex > -1) {
+        raceItems.splice(anyIndex, 1);
+      }
+      raceItems.push(e.target.value);
+      raceSelected.innerHTML = raceItems.join(",");
+      race.attributes.data.value = raceItems.join(",");
+    }
+    console.log(race.attributes.data.value)
+  }
   return (
     <>
       <p className="table-header">Characters</p>
@@ -13,7 +37,12 @@ function Tableheader() {
           <div className="table-header-item">
             <div className="table-input-wrapper">
               <label>Search</label>
-              <input id="search" className="table-input" type="text" />
+              <input
+                id="search"
+                className="table-input"
+                type="text"
+                placeholder="by name"
+              />
             </div>
             <div className="table-input-wrapper">
               <label>Sort by</label>
@@ -33,7 +62,16 @@ function Tableheader() {
           <div className="table-header-item">
             <div className="table-input-wrapper">
               <label>Race</label>
-              <select name="" id="race" className="table-input">
+              <div id="race-selected" className="table-input-select">
+                Any
+              </div>
+              <select
+                onChange={toggleItem}
+                name=""
+                id="race"
+                className="table-input-dropdown"
+                data="Any"
+              >
                 <option value="Any">Any</option>
                 <option value="Human">Human</option>
                 <option value="Men">Men</option>
