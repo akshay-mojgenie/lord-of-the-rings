@@ -7,22 +7,46 @@ function TableBody() {
   const [data, setData] = useState([]);
   const [limit, setLimit] = useState("10");
   const [sort, setSort] = useState("asc");
+  const [gender, setGender] = useState("Any");
+  const [search, setSearch] = useState("");
+  const [race, setRace] = useState("");
 
   function fetchData() {
-    api.get(`/character?limit=${limit}&sort=name:${sort}`).then((response) => {
-      setData(response.data.docs);
-    });
+    api
+      .get(
+        `/character?limit=${limit}&sort=name:${sort}${
+          gender === "Any" ? "" : "&gender=" + gender
+        }${search === "" ? "" : "&name=/" + search + "/i"}${
+          race === "Any" ? "" : "&race=" + race
+        }`
+      )
+      .then((response) => {
+        setData(response.data.docs);
+      });
   }
   useEffect(() => {
+    const limit = document.getElementById("limit");
+    const sort = document.getElementById("sort");
+    const gender = document.getElementById("gender");
+    const search = document.getElementById("search");
+    const race = document.getElementById("race");
+    limit.onchange = () => {
+      setLimit(limit.value);
+    };
+    sort.onchange = () => {
+      setSort(sort.value);
+    };
+    gender.onchange = () => {
+      setGender(gender.value);
+    };
+    search.onchange = () => {
+      setSearch(search.value);
+    };
+    race.onchange = () => {
+      setRace(race.value);
+    };
     fetchData();
-    document.getElementById("limit").onchange = () => {
-      setLimit(document.getElementById("limit").value);
-    };
-    document.getElementById("sort").onchange = () => {
-      setSort(document.getElementById("sort").value);
-    };
-  }, [limit, sort]);
-  console.log(data)
+  }, [limit, sort, gender, search, race]);
   return (
     <table className="table">
       <tbody>

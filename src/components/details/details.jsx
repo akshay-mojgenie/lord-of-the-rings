@@ -16,49 +16,51 @@ export default function Details() {
       <p className="table-header">Characters &gt; {data.name}</p>
       <div className="table-details">
         <table>
-          <tr>
-            <th>Name</th>
-            <td>{data.name}</td>
-          </tr>
-          <tr>
-            <th>WikiURL</th>
-            <td>{data.wikiUrl}</td>
-          </tr>
-          <tr>
-            <th>Race</th>
-            <td>{data.race}</td>
-          </tr>
-          <tr>
-            <th>Gender</th>
-            <td>{data.gender}</td>
-          </tr>
-          <tr>
-            <th>Height</th>
-            <td>{data.height}</td>
-          </tr>
-          <tr>
-            <th>Hair</th>
-            <td>{data.hair}</td>
-          </tr>
-          <tr>
-            <th>Realm</th>
-            <td>{data.realm}</td>
-          </tr>
-          <tr>
-            <th>Birth</th>
-            <td>{data.birth}</td>
-          </tr>
-          <tr>
-            <th>Spouse</th>
-            <td>{data.spouse}</td>
-          </tr>
-          <tr>
-            <th>Death</th>
-            <td>{data.death}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <td>{data.name}</td>
+            </tr>
+            <tr>
+              <th>WikiURL</th>
+              <td>{data.wikiUrl}</td>
+            </tr>
+            <tr>
+              <th>Race</th>
+              <td>{data.race}</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>{data.gender}</td>
+            </tr>
+            <tr>
+              <th>Height</th>
+              <td>{data.height}</td>
+            </tr>
+            <tr>
+              <th>Hair</th>
+              <td>{data.hair}</td>
+            </tr>
+            <tr>
+              <th>Realm</th>
+              <td>{data.realm}</td>
+            </tr>
+            <tr>
+              <th>Birth</th>
+              <td>{data.birth}</td>
+            </tr>
+            <tr>
+              <th>Spouse</th>
+              <td>{data.spouse}</td>
+            </tr>
+            <tr>
+              <th>Death</th>
+              <td>{data.death}</td>
+            </tr>
+          </tbody>
         </table>
         <div className="table-details-close">
-          <button className="submit">CLOSE</button>
+          <a href="/" className="submit">CLOSE</a>
         </div>
       </div>
     </>
