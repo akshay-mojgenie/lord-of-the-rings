@@ -53,7 +53,9 @@ function TableBody() {
     search.onchange = () => {
       setSearch(search.value);
     };
-  }, []);
+
+    fetchData();
+  }, [limit, sort, gender, search]);
 
   useEffect(() => {
     const submit = document.getElementById("submit");
@@ -68,7 +70,7 @@ function TableBody() {
       setRace(race.attributes.data.value);
     };
   }, []);
-  
+
   useEffect(() => {
     const pageFirst = document.getElementById("page-first");
     const pageNear = document.getElementById("page-near");
@@ -170,7 +172,6 @@ function TableBody() {
       }
     };
   }, [pages, pageCurrent, dataFirstLoad]);
-
 
   return (
     <table className="table">
