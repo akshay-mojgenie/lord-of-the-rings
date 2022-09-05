@@ -11,9 +11,10 @@ function TableBody() {
   const [sort, setSort] = useState("asc");
   const [gender, setGender] = useState("Any");
   const [search, setSearch] = useState("");
-  const [race, setRace] = useState("");
+  // const [race, setRace] = useState("");
   const [pages, setPages] = useState("");
   const [pageCurrent, setPageCurrent] = useState("");
+  let raceData;
 
   function fetchData(page) {
     api
@@ -21,14 +22,15 @@ function TableBody() {
         `/character?limit=${limit}&sort=name:${sort}${
           gender === "Any" ? "" : "&gender=" + gender
         }${search === "" ? "" : "&name=/" + search + "/i"}${
-          race == "Any" ? "" : "&race=" + race
+          raceData === "Any" || raceData === undefined
+            ? ""
+            : "&race=" + raceData
         }${page ? "&page=" + page : ""}`
       )
       .then((response) => {
         setData(response.data.docs);
         setPages(response.data.pages);
         setPageCurrent(response.data.page);
-        console.log(response.data.docs);
       });
   }
 
@@ -66,10 +68,15 @@ function TableBody() {
 
   useEffect(() => {
     const race = document.getElementById("race");
-    race.onchange = () => {
-      setRace(race.attributes.data.value);
-    };
-  }, []);
+    // race.onchange = () => {
+    //   raceData = race.attributes.data.value;
+    //   console.log("body: ", race.attributes.data.value);
+    // };
+    race.addEventListener("change", () => {
+      raceData = race.attributes.data.value;
+      console.log("body: ", race.attributes.data.value);
+    });
+  }, [raceData]);
 
   useEffect(() => {
     const pageFirst = document.getElementById("page-first");
@@ -154,7 +161,7 @@ function TableBody() {
       pageNear.style.backgroundColor = "white";
     }
 
-    if (pageCurrent == pageMid.innerHTML) {
+    if (pageCurrent === pageMid.innerHTML) {
       pageMid.style.backgroundColor = "#badbff";
     } else {
       pageMid.style.backgroundColor = "white";

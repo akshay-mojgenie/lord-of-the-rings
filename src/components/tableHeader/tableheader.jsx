@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./tableHeader.scss";
 
 function Tableheader() {
@@ -8,27 +8,31 @@ function Tableheader() {
 
   let raceItems = [];
 
-  function toggleItem(e) {
+  useEffect(() => {
     const race = document.getElementById("race");
     const raceSelected = document.getElementById("race-selected");
-    let index = raceItems.indexOf(e.target.value);
-    let anyIndex = raceItems.indexOf("Any");
-    if (e.target.value == "Any") {
-      raceItems = ["Any"];
-      raceSelected.innerHTML = "Any";
-      race.attributes.data.value = "Any";
-    } else if (index > -1) {
-      raceItems.splice(index, 1);
-    } else {
-      if (anyIndex > -1) {
-        raceItems.splice(anyIndex, 1);
+    function toggleItem(e) {
+      let index = raceItems.indexOf(e.target.value);
+      let anyIndex = raceItems.indexOf("Any");
+      if (e.target.value === "Any") {
+        raceItems = ["Any"];
+        raceSelected.innerHTML = "Any";
+        race.attributes.data.value = "Any";
+      } else if (index > -1) {
+        raceItems.splice(index, 1);
+      } else {
+        if (anyIndex > -1) {
+          raceItems.splice(anyIndex, 1);
+        }
+        raceItems.push(e.target.value);
+        raceSelected.innerHTML = raceItems.join(",");
+        race.attributes.data.value = raceItems.join(",");
+        console.log("header: ",race.attributes.data.value)
       }
-      raceItems.push(e.target.value);
-      raceSelected.innerHTML = raceItems.join(",");
-      race.attributes.data.value = raceItems.join(",");
     }
-    console.log(race.attributes.data.value)
-  }
+    race.onchange = toggleItem
+  }, [])
+  
   return (
     <>
       <p className="table-header">Characters</p>
@@ -66,7 +70,7 @@ function Tableheader() {
                 Any
               </div>
               <select
-                onChange={toggleItem}
+                // onChange={toggleItem}
                 name=""
                 id="race"
                 className="table-input-dropdown"
